@@ -4,11 +4,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>io.github.christian-draeger</groupId>
-    <artifactId>spring-boot-starter-react</artifactId>
+    <artifactId>spring-boot-react-starter</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>spring-boot-starter-react</name>
+    <name>spring-boot-react-starter</name>
     <description>Spring-Boot with React setup</description>
 
     <parent>
