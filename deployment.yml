@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: spring-boot-and-react
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: spring-boot-and-react
+    spec:
+      containers:
+      - name: spring-boot-and-react
+        image: registry.gitlab.com/freundchen/spring-boot-and-react
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8181
+      imagePullSecrets:
+        - name: registry.gitlab.com

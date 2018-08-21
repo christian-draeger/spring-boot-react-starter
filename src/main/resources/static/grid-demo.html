@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Playground</title>
+	<style>
+		.container {
+			display: grid;
+			grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+			grid-template-rows: auto;
+			grid-gap: 10px;
+			grid-auto-rows: auto;
+			grid-auto-flow: row;
+		}
+
+		.wrapper {
+			perspective: 2000px;
+		}
+
+		.cell {
+			transition: 1s;
+			transform-style: preserve-3d;
+			-webkit-transform-style: preserve-3d;
+			transform-origin: right;
+			height: 320px;
+			width: 100%;
+		}
+
+		.cell.flipped {
+			transform: translateX(-100%) rotateY(-180deg);
+			-webkit-transform: translateX(-100%) translateX(2px) rotateY(-180deg);
+			height: 320px; /* this can be any height without breaking the grid - it will grow automatically */
+		}
+
+		.front {
+			position: absolute;
+			border: 1px solid black;
+			background-color: bisque;
+			height: 100%;
+			width: 100%;
+			transform: rotateY(0deg);
+			-webkit-transform: rotateY(0deg);
+			backface-visibility: hidden;
+			-webkit-backface-visibility: hidden;
+		}
+
+		.turn {
+			position: absolute;
+			cursor: pointer;
+			top: 10px;
+			right: 10px;
+			border: 1px solid black;
+			background-color: bisque;
+			transform: rotateY(0deg);
+			-webkit-transform: rotateY(0deg);
+			backface-visibility: hidden;
+			-webkit-backface-visibility: hidden;
+		}
+
+		.close {
+			position: absolute;
+			cursor: pointer;
+			top: 10px;
+			left: 10px;
+			border: 1px solid black;
+			transform: rotateY(180deg);
+			-webkit-transform: translateZ(-1px) rotateY(180deg);
+			backface-visibility: hidden;
+			-webkit-backface-visibility: hidden;
+		}
+
+		.back {
+			position: absolute;
+			background-color: coral;
+			height: 100%;
+			width: 100%;
+			border: 1px solid black;
+			transform: rotateY(180deg);
+			-webkit-transform: rotateY(180deg);
+			backface-visibility: hidden;
+			-webkit-backface-visibility: hidden;
+		}
+
+		.content {
+			padding: 20px;
+			backface-visibility: hidden;
+			-webkit-backface-visibility: hidden;
+		}
+
+		.page {
+			display: grid;
+			grid-template-columns: auto;
+			grid-template-rows: auto;
+			grid-gap: 20px;
+			align-items: flex-start;
+		}
+
+		/* drag n drop start */
+		.move {
+			cursor: move;
+			cursor: -webkit-grabbing;
+
+			/* just for demo layout */
+			height: 50px;
+		}
+		.ghost {
+			opacity: .5;
+		}
+		/* drag n drop end */
+
+		/* filter and search start */
+		.navi {
+			padding: 10px;
+		}
+		.button {
+			padding: 15px;
+			border-radius: 3px;
+			background-color: orange;
+			display: inline-block;
+			cursor: pointer;
+		}
+		.button.selected,
+		.button:hover {
+			background-color: orangered;
+		}
+		/* filter and search end */
+	</style>
+	<script
+		src="https://code.jquery.com/jquery-3.3.1.js"
+		integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+		crossorigin="anonymous"></script>
+
+	<!-- add drag and drop lib -->
+	<script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+
+	<!-- flip tiles script -->
+	<script type="application/ecmascript">
+		$(() => {
+			console.log('on ready');
+
+			$('.turn').on('click', (event) => {
+				console.log('turn');
+				$('.cell').removeClass('flipped');
+				const target = $(event.target);
+				target.closest('.cell').addClass('flipped');
+			});
+			$('.close').on('click', (event) => {
+				console.log('close');
+				const target = $(event.target);
+				target.closest('.cell').removeClass('flipped');
+			});
+		});
+	</script>
+
+	<!-- filter and search script -->
+	<script type="application/ecmascript">
+		$(() => {
+			$('.button').on('click', (event) => {
+				$('.button').removeClass("selected");
+				const clickedFilter = $(event.target);
+				const filterData = clickedFilter.data("filter");
+				clickedFilter.addClass("selected");
+
+				const items = $('.wrapper');
+
+				if (filterData === "all") {
+					items.show();
+					return;
+
+				}
+				items.show();
+				items.each(function( index, item ) {
+					const category = item.getAttribute("data-category");
+					if (!category.includes(filterData)) {
+						$(item).hide();
+					}
+				});
+			});
+		});
+	</script>
+
+	<!-- drag and drop script -->
+	<script type="application/ecmascript">
+		$(() => {
+			const container = $('#listWithHandle')[0];
+			// complete list of options: https://github.com/RubaXa/Sortable#options
+			Sortable.create(container, {
+				handle: '.move',
+				animation: 150,
+				ghostClass: "ghost",
+			});
+		});
+	</script>
+
+
+</head>
+<body>
+<div class="navi">
+	<div class="button" data-filter="all">all</div>
+	<div class="button" data-filter="fancy">fancy</div>
+	<div class="button" data-filter="cool">cool</div>
+	<div class="button" data-filter="great">great</div>
+	<span>feel free to try out drag and drop by grabbing the icon</span>
+</div>
+<div class="page">
+	<div id="listWithHandle" class="container">
+		<!-- data-category attributes are for necessary for filtering -->
+		<div class="wrapper" data-category="fancy">
+			<div class="cell">
+				<div class="back">
+					<div class="content">
+						Back 1
+					</div>
+				</div>
+				<div class="close">
+					<div class="content">
+						<--
+					</div>
+				</div>
+				<div class="front">
+					<div class="content">
+						Front 1
+						<img src="https://cdn2.iconfinder.com/data/icons/hand-gestures/32/gesture-finger-directions-512.png" class="move" />
+						<div>category: fancy</div>
+					</div>
+				</div>
+				<div class="turn">
+					<div class="content">
+						-->
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="wrapper" data-category="cool">
+			<div class="cell">
+				<div class="back">
+					<div class="content">
+						Back 2
+					</div>
+				</div>
+				<div class="close">
+					<div class="content">
+						<--
+					</div>
+				</div>
+				<div class="front">
+					<div class="content">
+						Front 2
+						<img src="https://cdn2.iconfinder.com/data/icons/hand-gestures/32/gesture-finger-directions-512.png" class="move" />
+						<div>category: cool</div>
+					</div>
+				</div>
+				<div class="turn">
+					<div class="content">
+						-->
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="wrapper" data-category="great, cool">
+			<div class="cell">
+				<div class="back">
+					<div class="content">
+						Back 3
+					</div>
+				</div>
+				<div class="close">
+					<div class="content">
+						<--
+					</div>
+				</div>
+				<div class="front">
+					<div class="content">
+						Front 3
+						<img src="https://cdn2.iconfinder.com/data/icons/hand-gestures/32/gesture-finger-directions-512.png" class="move" />
+						<div>category: great, cool</div>
+					</div>
+				</div>
+				<div class="turn">
+					<div class="content">
+						-->
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="wrapper" data-category="fancy, great">
+			<div class="cell">
+				<div class="back">
+					<div class="content">
+						Back 4
+					</div>
+				</div>
+				<div class="close">
+					<div class="content">
+						<--
+					</div>
+				</div>
+				<div class="front">
+					<div class="content">
+						Front 4
+						<img src="https://cdn2.iconfinder.com/data/icons/hand-gestures/32/gesture-finger-directions-512.png" class="move" />
+						<div>category: fancy, great</div>
+					</div>
+				</div>
+				<div class="turn">
+					<div class="content">
+						-->
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="wrapper" data-category="cool">
+			<div class="cell">
+				<div class="back">
+					<div class="content">
+						Back 5
+					</div>
+				</div>
+				<div class="close">
+					<div class="content">
+						<--
+					</div>
+				</div>
+				<div class="front">
+					<div class="content">
+						Front 5
+						<img src="https://cdn2.iconfinder.com/data/icons/hand-gestures/32/gesture-finger-directions-512.png" class="move" />
+						<div>category: cool</div>
+					</div>
+				</div>
+				<div class="turn">
+					<div class="content">
+						-->
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="wrapper" data-category="great">
+			<div class="cell">
+				<div class="back">
+					<div class="content">
+						Back 6
+					</div>
+				</div>
+				<div class="close">
+					<div class="content">
+						<--
+					</div>
+				</div>
+				<div class="front">
+					<div class="content">
+						Front 6
+						<img src="https://cdn2.iconfinder.com/data/icons/hand-gestures/32/gesture-finger-directions-512.png" class="move" />
+						<div>category: great</div>
+					</div>
+				</div>
+				<div class="turn">
+					<div class="content">
+						-->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "failCount": 0,
+  "totalCount": 1,
+  "passCount": 1,
+  "skipCount": 0,
+  "timestamp": 1534284000,
+  "number": 5,
+  "fullDisplayName": "mocked title",
+  "id": "id",
+  "result": "success",
+  "url": "http://google.de",
+  "fullName": "mocked full name",
+  "description": "mocked description",
+  "date": "mocked date",
+  "building": false,
+  "hasNumbers": true
+}
