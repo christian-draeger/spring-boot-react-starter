@@ -17,6 +17,7 @@ to start implementing a React app with a spring-boot based backend you can do on
 
 basically a skeleton spring-boot project (using Kotlin - but feel free to remove the kotlin classes and replace them with java files if you want) 
 merged with a React demo App consuming data from an Spring-boot REST endpoint and displaying it.
+The bundling, transpiling and test execution of the Frontend resources (JS, CSS, assets, ...) is fully integrated in the maven run.
 
 backend stack: 
 * [spring-boot](http://spring.io/projects/spring-boot)
