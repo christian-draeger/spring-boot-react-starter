@@ -33,7 +33,7 @@ The watch task will support hot module replacement (HMR) for frontend resources 
 
 #### Stack:
 Backend: 
-* [spring-boot](http://spring.io/projects/spring-boot)
+* [spring-boot 2](http://spring.io/projects/spring-boot)
 * [kotlin](https://kotlinlang.org)
 * [maven](https://maven.apache.org)
 * testing:
@@ -50,7 +50,7 @@ Frontend:
 Deployment:
 * a [Docker](https://www.docker.com) image will be created if maven run (compiling and tests) have been successful so you could easily publisch your project to AWS, Kubernetes, ...
 
-#### How to use:
+#### Run it:
 install complete app
 
 	./mvnw clean install
