@@ -13,6 +13,6 @@ class DataController {
 }
 
 data class Data(
-  val hello: String = "Hello",
-  val world: String = "World"
+  val someValue: String = "Hello",
+  val otherValue: String = "World"
 )

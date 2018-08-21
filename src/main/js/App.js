@@ -1,25 +1,28 @@
 import React, {Component} from "react";
+import HelloWorld from "./components/HelloWorld";
 
 class App extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            data: {}
-        }
+        this.state = {}
     }
 
     componentWillMount() {
-        fetch('http://localhost:8089/data')
-            .then(response => {
-                this.setState({data: response.json()})
+        fetch("/data")
+            .then(response => response.json())
+            .then((data) => {
+                this.setState(data)
             });
     }
 
     render() {
         return (
             <div className="App">
-                hallo
+                <HelloWorld
+                    someValue={this.state.someValue}
+                    otherValue={this.state.otherValue}
+                />
             </div>
         );
     }
