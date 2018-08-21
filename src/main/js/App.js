@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-import "../scss/components/App.scss";
 
 class App extends Component {
 
