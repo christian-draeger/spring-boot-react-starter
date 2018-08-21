@@ -48,7 +48,7 @@ Frontend:
 	* [jest](https://jestjs.io)
 
 Deployment:
-* a [Docker](https://www.docker.com) image will be created if maven run (compiling and tests) have been successful so you could easily publisch your project to AWS, Kubernetes, ...
+* a [Docker](https://www.docker.com) image will be created if maven run (compiling and tests) have been successful - this allows you to easily publish your project to AWS, Kubernetes, ...
 
 #### Run it:
 install complete app
