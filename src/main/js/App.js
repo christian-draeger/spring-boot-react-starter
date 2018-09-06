@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import HelloWorld from "./components/HelloWorld";
+import Panel from "./components/Panel";
 
 class App extends Component {
 
@@ -21,8 +21,8 @@ class App extends Component {
 
     render() {
         return (
-            <div className="App">
-                <HelloWorld
+            <div>
+                <Panel
                     someValue={this.state.someValue}
                     otherValue={this.state.otherValue}
                 />
