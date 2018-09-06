@@ -48,7 +48,7 @@ Frontend:
 	* [jest](https://jestjs.io)
 
 Deployment:
-* a [Docker](https://www.docker.com) image will be created if maven run (compiling and tests) have been successful - this allows you to easily publish your project to AWS, Kubernetes, ...
+* a [Docker](https://www.docker.com) image will be created if you activating the docker profile for the maven run (``./mvnw clean install -Pdocker``)- this allows you to easily publish your project to AWS, Kubernetes, ...
 
 #### Run it:
 install complete app
@@ -58,3 +58,8 @@ install complete app
 run app on local system (app will be available under [http://localhost:8181](http://localhost:8181))
 	
 	./mvnw spring-boot:run
+	
+#### Run it in docker container
+
+	./mvnw clean install -Pdocker
+	

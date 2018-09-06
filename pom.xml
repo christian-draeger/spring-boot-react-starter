@@ -230,38 +230,52 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>io.fabric8</groupId>
-                <artifactId>docker-maven-plugin</artifactId>
-                <version>0.26.0</version>
-
-                <configuration>
-                    <verbose>true</verbose>
-                    <images>
-                        <image>
-                            <name>${project.artifactId}</name>
-                            <build>
-                                <dockerFile>Dockerfile</dockerFile>
-                                <assembly>
-                                    <descriptorRef>artifact</descriptorRef>
-                                </assembly>
-                            </build>
-                        </image>
-                    </images>
-                </configuration>
-
-                <executions>
-                    <execution>
-                        <id>build-image</id>
-                        <phase>package</phase>
-
-                        <goals>
-                            <goal>build</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
     </build>
+    <profiles>
+        <profile>
+            <id>docker</id>
 
+            <properties>
+                <noContracts>true</noContracts>
+            </properties>
+
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>io.fabric8</groupId>
+                        <artifactId>docker-maven-plugin</artifactId>
+                        <version>0.26.0</version>
+
+                        <configuration>
+                            <verbose>true</verbose>
+                            <images>
+                                <image>
+                                    <name>${project.artifactId}</name>
+                                    <build>
+                                        <dockerFile>Dockerfile</dockerFile>
+                                        <assembly>
+                                            <descriptorRef>artifact</descriptorRef>
+                                        </assembly>
+                                    </build>
+                                </image>
+                            </images>
+                        </configuration>
+
+                        <executions>
+                            <execution>
+                                <id>build-image</id>
+                                <phase>package</phase>
+
+                                <goals>
+                                    <goal>build</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+    </profiles>
 </project>
