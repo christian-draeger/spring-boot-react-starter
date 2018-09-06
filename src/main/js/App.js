@@ -6,27 +6,25 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            someValue: "",
-            otherValue: ""
+            result: []
         }
+
     }
 
     componentWillMount() {
         fetch("/data")
             .then(response => response.json())
             .then((data) => {
-                this.setState(data)
+                this.setState({result: data})
             });
     }
 
     render() {
         return (
-            <div>
-                <Panel
-                    someValue={this.state.someValue}
-                    otherValue={this.state.otherValue}
-                />
-            </div>
+            this.state.result.map(jobResult =>
+                <Panel jobResult={jobResult}/>
+            )
+
         );
     }
 }

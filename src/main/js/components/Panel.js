@@ -10,8 +10,8 @@ const StyledPanel = styled.div`
     border-radius: 5px;
 `;
 
-const Panel = ({someValue, otherValue}) => (
-    <StyledPanel>{someValue + " " + otherValue}</StyledPanel>
+const Panel = ({jobResult}) => (
+    <StyledPanel>{jobResult.jobName + " " + jobResult.status}</StyledPanel>
 );
 
 export default Panel;

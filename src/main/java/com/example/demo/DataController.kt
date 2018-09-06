@@ -7,17 +7,15 @@ import org.springframework.web.bind.annotation.RestController
 class DataController {
 
     @GetMapping("/data")
-    fun renderMainPage(): ResultSet {
-        return ResultSet()
+    fun renderMainPage(): List<JobResult> {
+        return listOf(
+                JobResult(jobName = "job 1"),
+                JobResult(jobName = "job 2"),
+                JobResult(jobName = "job 3"),
+                JobResult(jobName = "job 4")
+        )
     }
 }
-
-data class ResultSet(
-        var result1: JobResult = JobResult(jobName = "job 1"),
-        val result2: JobResult = JobResult(jobName = "job 2"),
-        val result3: JobResult = JobResult(jobName = "job 3"),
-        val result4: JobResult = JobResult(jobName = "job 4")
-)
 
 data class JobResult(
         var jobName: String = "job name",
