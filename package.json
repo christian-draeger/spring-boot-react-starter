@@ -2,7 +2,7 @@
   "name": "spring-boot-starter-react",
   "license": "Beerware",
   "scripts": {
-    "bundle": "parcel build src/main/js/index.js --no-cache --out-dir target/classes/static/dist --out-file bundle --public-url /dist",
+    "bundle": "parcel build src/main/js/index.js --out-dir target/classes/static/dist --out-file bundle --public-url /dist",
     "postbundle": "date-now --format='DD.MM.YYYY-HH:mm:ss (A)' | cowthink $1",
     "watch": "parcel watch src/main/js/index.js --out-dir target/classes/static/dist --out-file bundle --public-url /dist",
     "postwatch": "date-now --format='DD.MM.YYYY-HH:mm:ss (A)' | cowthink $1"
@@ -40,5 +40,5 @@
       "./src/test/jest/setup-jest.js",
       "jest-localstorage-mock"
     ]
-}
+  }
 }
