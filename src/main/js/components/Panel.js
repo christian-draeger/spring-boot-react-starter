@@ -3,10 +3,9 @@ import styled from "styled-components";
 
 const StyledPanel = styled.div`
     background-color: green;
-    width: 100%;
-    height: 250px;
+    min-height: 100px;
+    max-height: 100vh;
     font-size: 24px;
-    margin-top: 15px;
     border-radius: 5px;
 `;
 

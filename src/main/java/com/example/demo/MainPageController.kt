@@ -25,7 +25,9 @@ fun renderInitialMarkup(): String =
                 style {
                     +"""
                         body {
-                            background-color: black;
+                            background-color: #1a1a1a;
+                            margin: 0;
+                            padding: 0;
                         }
                     """.trimIndent()
                 }

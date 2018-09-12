@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import Panel from "./components/Panel";
+import BoardWrapper from "./components/BoardWrapper";
 
 class App extends Component {
 
@@ -21,9 +22,9 @@ class App extends Component {
 
     render() {
         return (
-            this.state.result.map(jobResult =>
-                <Panel jobResult={jobResult}/>
-            )
+            <BoardWrapper>
+                {this.state.result.map(jobResult => <Panel jobResult={jobResult}/>)}
+            </BoardWrapper>
 
         );
     }

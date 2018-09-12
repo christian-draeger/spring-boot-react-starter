@@ -6,14 +6,17 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 class DataController {
 
+    val numberOfPanels = 10
+
     @GetMapping("/data")
     fun renderMainPage(): List<JobResult> {
-        return listOf(
-                JobResult(jobName = "job 1"),
-                JobResult(jobName = "job 2"),
-                JobResult(jobName = "job 3"),
-                JobResult(jobName = "job 4")
-        )
+
+        val result = mutableListOf<JobResult>()
+
+        for(i in 1..numberOfPanels) {
+            result.add(JobResult(jobName = "job $i"))
+        }
+        return result
     }
 }
 
