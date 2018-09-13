@@ -21,20 +21,12 @@ fun renderInitialMarkup(): String =
             head {
                 title { +"spring-boot-react-starter" }
                 meta(charset = "utf-8")
-                style {
-                    +"""
-                        body {
-                            background-color: #1a1a1a;
-                            margin: 0;
-                            padding: 0;
-                        }
-                    """.trimIndent()
-                }
+                link(rel = "stylesheet", type = "text/css", href = "/dist/bundle.css") {}
             }
 
             body {
                 div {
-                    id = "root"
+                    id = "reactEntryPoint"
                 }
                 script(src = "/dist/bundle.js") { }
             }
