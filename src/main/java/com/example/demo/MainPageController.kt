@@ -21,7 +21,6 @@ fun renderInitialMarkup(): String =
             head {
                 title { +"spring-boot-react-starter" }
                 meta(charset = "utf-8")
-                link(rel = "stylesheet", type = "text/css", href = "/dist/bundle.css") {}
                 style {
                     +"""
                         body {
