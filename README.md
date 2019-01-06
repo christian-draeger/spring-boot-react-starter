@@ -59,7 +59,12 @@ run app on local system (app will be available under [http://localhost:8181](htt
 	
 	./mvnw spring-boot:run
 	
-#### Run it in docker container
+#### Build docker container
 
 	./mvnw clean install -Pdocker
+	
+	
+#### Run docker container (on Port 8080)
+
+	docker run -p 8080:8181 spring-boot-react-starter
 	
