@@ -1,8 +1,6 @@
 Spring-Boot with React starter project
 ======================================
 
-# !! work in progress !!
-
 This starter project is integrating a React Frontend with Spring-boot.
 The Frontend is running in Spring-Boot's embedded tomcat, Fronend resources will be bundled during the maven run
 
